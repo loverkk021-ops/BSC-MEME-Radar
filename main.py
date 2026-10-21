@@ -2667,8 +2667,8 @@ for i, stat in enumerate(sorted_stats):
                 ):
                     current_batch = test_content
 
-    # 处理新增新闻（同样确保来源标题+第一条新闻的原子性）
-    if report_data["new_titles"]:
+        # 处理新增新闻（同样确保来源标题+第一条新闻的原子性）
+        if report_data["new_titles"]:
         new_header = ""
         if format_type == "wework":
             new_header = f"\n\n\n\n🆕 **本次新增热点新闻** (共 {report_data['total_new_count']} 条)\n\n"
