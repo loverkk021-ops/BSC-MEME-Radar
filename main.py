@@ -2661,8 +2661,8 @@ def split_content_into_batches(
                 )
             elif format_type == "dingtalk":
                 new_header = f"\n---\n\n🆕 **本次新增热点新闻** (共 {report_data['total_new_count']} 条)\n\n"
-
-              test_content = current_batch + new_header
+             
+        test_content = current_batch + new_header
 
             if (
             len(test_content.encode("utf-8")) + len(base_footer.encode("utf-8"))
