@@ -2520,7 +2520,23 @@ def split_content_into_batches(
             current_batch_has_content = True
 
         # 逐个处理词组（确保词组标题+第一条新闻的原子性）
-        for i, stat in enumerate(report_data["stats"]):
+        priority_keywords = [
+    "BSC", "BNB", "币安", "Binance", "CZ", "赵长鹏",
+    "MEME", "Memecoin", "PEPE", "DOGE", "SHIB",
+    "吉祥物", "IP形象", "品牌IP", "官方IP",
+    "LABUBU", "泡泡玛特", "潮玩"
+        ]
+
+priority_set = {word.lower() for word in priority_keywords}
+
+sorted_stats = sorted(
+    report_data["stats"],
+    key=lambda stat: (
+        str(stat["word"]).lower() not in priority_set
+    )
+)
+
+for i, stat in enumerate(sorted_stats):
             word = stat["word"]
             count = stat["count"]
             sequence_display = f"[{i + 1}/{total_count}]"
