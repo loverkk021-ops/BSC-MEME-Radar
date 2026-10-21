@@ -2522,31 +2522,30 @@ def split_content_into_batches(
         # 逐个处理词组（确保词组标题+第一条新闻的原子性）
       
             for i, stat in enumerate(report_data["stats"]):
-            word = stat["word"]
-            count = stat["count"]
-            sequence_display = f"[{i + 1}/{total_count}]"
-
-            # 构建词组标题
-            word_header = ""
-            if format_type == "wework":
-                if count >= 10:
-                    word_header = (
-                        f"🔥 {sequence_display} **{word}** : **{count}** 条\n\n"
-                    )
-            elif count >= 5:
-                word_header = (
-                    f"📈 {sequence_display} **{word}** : **{count}** 条\n\n"
-                )
-            else:
-                word_header = f"📌 {sequence_display} **{word}** : {count} 条\n\n"
-        elif format_type == "telegram":
-                if count >= 10:
-                    word_header = f"🔥 {sequence_display} {word} : {count} 条\n\n"
-                elif count >= 5:
-                    word_header = f"📈 {sequence_display} {word} : {count} 条\n\n"
-                else:
-                    word_header = f"📌 {sequence_display} {word} : {count} 条\n\n"
-            elif format_type == "dingtalk":
+                word = stat["word"]
+                count = stat["count"]
+                sequence_display = f"[{i + 1}/{total_count}]"
+                # 构建词组标题
+                word_header = ""
+                if format_type == "wework":
+                    if count >= 10:
+                        word_header = (
+                            f"🔥 {sequence_display} **{word}** : **{count}** 条\n\n"
+                        )
+                    elif count >= 5:
+                        word_header = (
+                            f"📈 {sequence_display} **{word}** : **{count}** 条\n\n"
+                        )
+                    else:
+                        word_header = f"📌 {sequence_display} **{word}** : {count} 条\n\n"
+                elif format_type == "telegram":
+                    if count >= 10:
+                        word_header = f"🔥 {sequence_display} {word} : {count} 条\n\n"
+                    elif count >= 5:
+                        word_header = f"📈 {sequence_display} {word} : {count} 条\n\n"
+                    else:
+                        word_header = f"📌 {sequence_display} {word} : {count} 条\n\n"
+                elif format_type == "dingtalk":
                 if count >= 10:
                     word_header = (
                         f"🔥 {sequence_display} **{word}** : **{count}** 条\n\n"
