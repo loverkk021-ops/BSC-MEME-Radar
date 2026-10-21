@@ -2652,28 +2652,30 @@ def split_content_into_batches(
 
         # 处理新增新闻（同样确保来源标题+第一条新闻的原子性）
         if report_data["new_titles"]:
-        new_header = ""
-        if format_type == "wework":
-            new_header = f"\n\n\n\n🆕 **本次新增热点新闻** (共 {report_data['total_new_count']} 条)\n\n"
-        elif format_type == "telegram":
-            new_header = (
-                f"\n\n🆕 本次新增热点新闻 (共 {report_data['total_new_count']} 条)\n\n"
-            )
-        elif format_type == "dingtalk":
-            new_header = f"\n---\n\n🆕 **本次新增热点新闻** (共 {report_data['total_new_count']} 条)\n\n"
+            new_header = ""
+            if format_type == "wework":
+                new_header = f"\n\n\n\n🆕 **本次新增热点新闻** (共 {report_data['total_new_count']} 条)\n\n"
+            elif format_type == "telegram":
+                new_header = (
+                    f"\n\n🆕 本次新增热点新闻 (共 {report_data['total_new_count']} 条)\n\n"
+                )
+            elif format_type == "dingtalk":
+                new_header = f"\n---\n\n🆕 **本次新增热点新闻** (共 {report_data['total_new_count']} 条)\n\n"
 
-        test_content = current_batch + new_header
-        if (
+              test_content = current_batch + new_header
+
+            if (
             len(test_content.encode("utf-8")) + len(base_footer.encode("utf-8"))
             >= max_bytes
-        ):
+            ):
             if current_batch_has_content:
                 batches.append(current_batch + base_footer)
-            current_batch = base_header + new_header
-            current_batch_has_content = True
-        else:
-            current_batch = test_content
-            current_batch_has_content = True
+                current_batch = base_header + new_header
+                current_batch_has_content = True
+            else:
+                current_batch = test_content
+                current_batch_has_content = True
+
 
         # 逐个处理新增新闻来源
         for source_data in report_data["new_titles"]:
