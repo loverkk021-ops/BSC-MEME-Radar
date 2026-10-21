@@ -2545,7 +2545,7 @@ def split_content_into_batches(
                         word_header = f"📈 {sequence_display} {word} : {count} 条\n\n"
                     else:
                         word_header = f"📌 {sequence_display} {word} : {count} 条\n\n"
-                elif format_type == "dingtalk":
+            elif format_type == "dingtalk":
                 if count >= 10:
                     word_header = (
                         f"🔥 {sequence_display} **{word}** : **{count}** 条\n\n"
@@ -2556,7 +2556,6 @@ def split_content_into_batches(
                     )
                 else:
                     word_header = f"📌 {sequence_display} **{word}** : {count} 条\n\n"
-
             # 构建第一条新闻
             first_news_line = ""
             if stat["titles"]:
