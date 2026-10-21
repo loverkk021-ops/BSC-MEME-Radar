@@ -2664,7 +2664,7 @@ def split_content_into_batches(
              
         test_content = current_batch + new_header
 
-            if (
+        if (
             len(test_content.encode("utf-8")) + len(base_footer.encode("utf-8"))
             >= max_bytes
             ):
